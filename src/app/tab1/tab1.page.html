@@ -1,17 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Honeywell Test APP
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="ion-padding ion-text-center">
+    <div *ngIf="message" style="margin: 10px 0; padding:20px">{{message}}</div>
+    <button style="margin-bottom: 40px; padding: 20px; width: 100%; color: #ffffff;" [ngStyle]="{'background': status == 'disabled' ? 'darkred' : 'darkgreen'}" (click)="enable()">SCAN READER IS {{status == 'disabled' ? 'DISABLED' : 'ENABLED' }}</button>
+    <button *ngIf="status == 'enabled'" style="margin-bottom: 10px; padding: 20px; background: purple; color: #ffffff; width: 100%;" (touchstart)="scanPressed()" (touchend)="scanReleased()">CLICK AND HOLD TO SCAN</button>
+    <ul>
+      <li *ngFor="let code of barcodes">{{code}}<br></li>
+    </ul>
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+
+
+  <div>
+    <ion-button (click)="scaneNewFunc()">Scan Device</ion-button>
+  </div>
 </ion-content>
